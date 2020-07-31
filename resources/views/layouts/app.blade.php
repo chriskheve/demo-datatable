@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- datatable style -->
+    @stack('styles')
+    <!-- datatable script -->
+    @stack('scripts')
 </head>
 <body>
     <div id="app">
