@@ -7,16 +7,16 @@
             <div class="card rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">
-                        Forms
+                        Formulaires
 
                         <div class="btn-toolbar float-md-right" role="toolbar">
                             <div class="btn-group" role="group" aria-label="Third group">
                                 <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-plus-circle"></i> Create a New Form
+                                    <i class="fa fa-plus-circle"></i> Créer un nouveau formulaire
                                 </a>
 
                                 <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-th-list"></i> My Submissions
+                                    <i class="fa fa-th-list"></i> Formulaires soumis
                                 </a>
                             </div>
                         </div>
@@ -28,35 +28,36 @@
                         <table class="table table-bordered d-table table-striped pb-0 mb-0">
                             <thead>
                                 <tr>
-                                    <th class="five">#</th>
-                                    <th>Name</th>
+                                    <th class="ten">#</th>
+                                    <th>Nom</th>
                                     <th class="ten">Visibility</th>
-                                    <th class="fifteen">Allows Edit?</th>
-                                    <th class="ten">Submissions</th>
+                                    <th class="ten">Soumissions</th>
                                     <th class="twenty-five">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($forms as $form)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $form->form_code }}</td>
                                         <td>{{ $form->name }}</td>
                                         <td>{{ $form->visibility }}</td>
-                                        <td>{{ $form->allowsEdit() ? 'YES' : 'NO' }}</td>
                                         <td>{{ $form->submissions_count }}</td>
                                         <td>
                                             <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
-                                                <i class="fa fa-th-list"></i> Data
+                                                <i class="fa fa-th-list"></i> Données
                                             </a>
-                                            <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
+                                            <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Voir le formulaire '{{ $form->name }}'">
                                                 <i class="fa fa-eye"></i> 
                                             </a> 
-                                            <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form">
+                                            <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Editer le formulaire">
                                                 <i class="fa fa-pencil"></i> 
+                                            </a>
+                                            <a href="{{ route('formbuilder::form.render', $form->identifier) }}" class="btn btn-primary btn-sm" title="Editer le formulaire">
+                                                <i class="fa fa-send"></i> 
                                             </a> 
-                                            <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
+                                            {{-- <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="" data-message="" data-original="" title="Copy form URL to clipboard">
                                                 <i class="fa fa-clipboard"></i> 
-                                            </button> 
+                                            </button>  --}}
 
                                             <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
                                                 @csrf 
