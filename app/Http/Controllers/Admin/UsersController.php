@@ -38,6 +38,7 @@ class UsersController extends Controller
         if(Gate::denies('edit-users')){
             return redirect(route('admin.users.index'));
         }
+        $users = User::all();
         $roles = Role::all();
         return view('admin.users.edit', compact('roles', 'users'));
     }
