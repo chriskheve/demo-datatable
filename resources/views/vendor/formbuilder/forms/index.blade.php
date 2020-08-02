@@ -11,9 +11,11 @@
 
                         <div class="btn-toolbar float-md-right" role="toolbar">
                             <div class="btn-group" role="group" aria-label="Third group">
-                                <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-plus-circle"></i> Créer un nouveau formulaire
-                                </a>
+                                @can('edit-users')
+                                    <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-plus-circle"></i> Créer un nouveau formulaire
+                                    </a>
+                                @endcan
 
                                 <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-th-list"></i> Formulaires soumis
@@ -81,7 +83,7 @@
                 @else
                     <div class="card-body">
                         <h4 class="text-danger text-center">
-                            No form to display.
+                            Aucun formulaire pour l'instant.
                         </h4>
                     </div>  
                 @endif

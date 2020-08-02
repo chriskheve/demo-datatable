@@ -24,7 +24,10 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
+                                        @can('edit-users')
+                                            <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
+                                        @endcan
+                                        
                                         <button type="button" class="btn btn-warning">Delete</button>
                                     </td>
                                 </tr>

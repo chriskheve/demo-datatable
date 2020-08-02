@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+    Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -24,6 +28,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
-    Route::resource('/admin/users', 'UsersController', ['except'=> ['show', 'create', 'store']]);
-});
+// Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+//     Route::resource('/admin/users', 'UsersController', ['except'=> ['show', 'create', 'store']]);
+// });
