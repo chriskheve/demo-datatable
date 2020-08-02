@@ -10,7 +10,7 @@
                         {{ $pageTitle }} ({{ $submissions->count() }})
 
                         <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Forms">
-                            <i class="fa fa-th-list"></i> My Forms
+                            <i class="fa fa-plus"></i> Nouveau
                         </a>
                     </h5>
                 </div>
@@ -67,7 +67,7 @@
                 @else
                     <div class="card-body">
                         <h4 class="text-danger text-center">
-                            No submission to display.
+                            Aucun formulaire soumis pour l'instant.
                         </h4>
                     </div>  
                 @endif
